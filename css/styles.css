@@ -40,10 +40,10 @@ body{
 .imageTriangle {
     background-image: url(../assets/Triangle.png);
     height: 130px;
-    background-size: contain;
-    background-position: center;
+    background-size:contain;
+    background-position:center;
     background-repeat: no-repeat;
-    margin: 5px;
+    margin: 20px;
 }
 
 .rumus {
@@ -101,9 +101,10 @@ body{
 }
 
 .button > button {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    border: 1px solid grey;
+
 }
 
 .button > button[type=reset] {
