@@ -1,0 +1,110 @@
+/** INI FILE CSS **/
+@font-face {
+    font-family: HelveticaNeue;
+    src: url(../assets/HelveticaNeueLight.otf);
+}
+
+body{
+    font-family: HelveticaNeue;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.mainContent{
+    display: flex;
+}
+.mainHeader{
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+.mainHeader>h1{
+    margin: 5px;
+}
+.mainHeader>p{
+    margin: 3px;
+    font-size: calc(100% / 1.618);
+}
+.mainForm{
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border-collapse: collapse;
+    font-size: 100%;
+}
+.title>header{
+    text-align: center;
+    background-color: deepskyblue;
+    border-bottom: 2px solid #ccc;
+    border-collapse: collapse;
+    font-size: 20px;
+    padding: 20px 0;
+}
+.imageTriangle{
+    background-image: url(../assets/Triangle.png);
+    width: auto;
+    height: 130px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 5px;
+}
+.rumus{
+    padding: 10px;
+    padding-top: 10px;
+    border-bottom: 2px solid #ccc;
+    border-collapse: collapse;
+}
+.rumus>span{
+    text-align: center;
+    width: inherit;
+    display: block;
+}
+.inputData>header{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.measurement{
+    padding: 10px;
+    border: 1.5px solid #767676;
+    border-radius: 2px;
+}
+.mainInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin: 15px;
+    margin-bottom: 20px;
+}
+.mainInput>input{
+    width: 95%;
+    padding: 10px ;
+    border: 1.5px solid #767676;
+    border-radius: 5px;
+}
+.inputAnswer{
+    margin: 0 15px;
+}
+.button{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0;
+}
+.button>button{
+    width: 20%;
+    height: auto;
+    padding: 5px;
+    background-color: lightblue;
+    border: 1.5px solid #767676;
+    border-radius: 5px;
+}
+.button>button[type=reset]{
+    background-color: yellow;
+}
+#input3{
+    display: none;
+}

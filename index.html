@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="mainContent">
+        <div>
+            <header class="mainHeader">
+                <h1>Welcome to katik!</h1>
+                <p>Hi sobat, selamat datang di katik</p>
+                <p>Sebuah website sederhana untuk menghitung keliling dan luas segitiga</p>
+            </header>
+            <form class="mainForm" onsubmit="calculate(event)" name="mainForm">
+                <div class="title">
+                    <header>Luas Segitiga</header>
+                </div>
+                <div class="imageTriangle">
+                </div>
+                <div class="rumus">
+                    Rumus Luas Segitiga adalah:
+                    <span>L = 1/2 x A x T</span>
+                    Dimana: <br>
+                    L = Luas <br>
+                    A = Alas <br>
+                    T = Tinggi
+                </div>
+                <div class="inputData">
+                    <header>
+                        <select id="measurement" class="measurement" onchange="handleMeasurementChange()">
+                            <option value="Luas">Hitung Luas Segitiga</option>
+                            <option value="Keliling">Hitung Keliling Segitiga</option>
+                        </select>
+                    </header>
+                    <div class="mainInput">
+                            <input type="number"  placeholder="Masukan Alas (Dalam bentuk sentimeter)" id="input1" name="input1" class="inputSegitiga">
+                            <input type="number"  placeholder="Masukan Tinggi (Dalam bentuk sentimeter)" id="input2" name="input2" class="inputSegitiga">
+                            <input type="number"  placeholder="?" id="input3" name="input3" class="inputSegitiga">
+                    </div>
+                    <div class="inputAnswer" id="inputAnswer">
+                    </div>
+                    <div class="button">
+                        <button type="submit">Submit</button>
+                        <button type="reset" onclick="clearAnswer(event)">Reset</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
