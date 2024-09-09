@@ -1,102 +1,94 @@
-// INI FILE JAVASCRIPT
-function Luas(){
-    var form = document.forms['mainForm']
-    var a = form['input1'].value;
-    var t = form['input2'].value;
-    if (a == '' || t == ''){
-        alert("Masukan input!")
-        return false;
+function Luas() {
+    const a = parseFloat(document.getElementById('input1').value);
+    const t = parseFloat(document.getElementById('input2').value);
+
+    if (isNaN(a) || isNaN(t) || a <= 0 || t <= 0) {
+        showError('error1', 'Masukan angka yang valid untuk alas dan tinggi.');
+        return;
     }
-    var alas = parseFloat(a)
-    var tinggi = parseFloat(t)
-    var luas = 1/2 * alas * tinggi
-    var luasCalculated = parseFloat(luas.toFixed(2))
-    console.log(alas, tinggi, luas, luasCalculated)
-    document.getElementById('inputAnswer').innerText =`Luas = 1/2 x A x T
-    Luas = 1/2 x ${alas} cm x ${tinggi} cm
-    Luas =  ${luasCalculated} cm`
+
+    const luas = 0.5 * a * t;
+    displayResult(`Luas = 1/2 x ${a} cm x ${t} cm = ${parseFloat(luas.toFixed(2))} cm²`);
 }
 
-function Keliling(){
-    var form = document.forms['mainForm']
-    var s1 = form['input1'].value;
-    var s2 = form['input2'].value;
-    var s3 = form['input3'].value;
-    if (s1 == '' || s2 == '' || s3 ==''){
-        alert("Masukan input!")
-        return false;
+function Keliling() {
+    const s1 = parseFloat(document.getElementById('input1').value);
+    const s2 = parseFloat(document.getElementById('input2').value);
+    const s3 = parseFloat(document.getElementById('input3').value);
+
+    if (isNaN(s1) || isNaN(s2) || isNaN(s3) || s1 <= 0 || s2 <= 0 || s3 <= 0) {
+        showError('error1', 'Masukan angka yang valid untuk semua sisi.');
+        return;
     }
-    var sisi1 = parseFloat(s1)
-    var sisi2 = parseFloat(s2)
-    var sisi3 = parseFloat(s3)
-    var keliling = sisi1 + sisi2 + sisi3
-    var kelilingCalculated = parseFloat(keliling.toFixed(2))
-    document.getElementById('inputAnswer').innerText =`Keliling = S1 + S2 + S3
-    Keliling = ${sisi1} + ${sisi2} + ${sisi3} 
-    Keliling =  ${kelilingCalculated} cm`
+
+    const keliling = s1 + s2 + s3;
+    displayResult(`Keliling = ${s1} cm + ${s2} cm + ${s3} cm = ${parseFloat(keliling.toFixed(2))} cm`);
 }
 
+function calculate(event) {
+    event.preventDefault();
+    clearErrors();
 
-function rumusLuas(){
-    var x = document.getElementsByClassName("rumus")
-    x[0].innerHTML = `
-    Rumus Luas Segitiga adalah:
-    <span>L = 1/2 x A x T</span>
-    Dimana: <br>
-    L = Luas <br>
-    A = Alas <br>
-    T = Tinggi`
-}
-
-function rumusKeliling(){
-    var x = document.getElementsByClassName("rumus")
-    x[0].innerHTML = `
-    Rumus Keliling Segitiga adalah:
-    <span>K = S1 + S2 + S3</span>
-    Dimana: <br>
-    S1 = Sisi 1 <br>
-    S2 = Sisi 2 <br>
-    S3 = Sisi 3`
-}
-
-function calculate(event){
-    event.preventDefault()
-    console.log("hello world")
-    var selectedOption = document.getElementById('measurement').value
-    if (selectedOption== 'Luas'){
-        Luas()
-    } 
-    if (selectedOption == 'Keliling'){
-        Keliling()
+    const selectedOption = document.getElementById('measurement').value;
+    if (selectedOption === 'Luas') {
+        Luas();
+    } else if (selectedOption === 'Keliling') {
+        Keliling();
     }
-    
 }
 
-function clearAnswer() {
-  document.getElementById('inputAnswer').innerText = ''; 
+function clearErrors() {
+    document.querySelectorAll('.error').forEach((error) => (error.style.display = 'none'));
 }
-    
-function handleMeasurementChange(){
-    var selectedOption = document.getElementById('measurement')
-    var input = document.getElementsByClassName('inputSegitiga')
-    console.log("hello")
-    if (selectedOption.value == 'Luas'){
-        input[0].placeholder = "Masukan Alas (Dalam bentuk sentimeter)"
-        input[1].placeholder = "Masukan Tinggi (Dalam bentuk sentimeter)"
-        if (input[2].style.display == 'block'){
-            console.log("test")
-            input[2].style.display = 'none'
-        }
-        rumusLuas()
-        clearAnswer()
+
+function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+}
+
+function displayResult(result) {
+    const answerDiv = document.getElementById('inputAnswer');
+    answerDiv.innerHTML = result;
+}
+
+function handleMeasurementChange() {
+    const selectedOption = document.getElementById('measurement').value;
+    const input3 = document.getElementById('input3');
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
+    const rumus = document.getElementById('rumus');
+    const judul = document.getElementById('titleName')
+
+    if (selectedOption === 'Luas') {
+        input1.placeholder = "Masukan Alas (cm)";
+        input2.placeholder = "Masukan Tinggi (cm)";
+        input3.style.display = 'none'
+        judul.innerText = 'Luas Segitiga'
+        rumus.innerHTML = `
+            Rumus Luas Segitiga adalah:
+            <span>L = 1/2 x A x T</span>
+            Dimana: <br>
+            L = Luas <br>
+            A = Alas <br>
+            T = Tinggi`;
+    } else if (selectedOption === 'Keliling') {
+        input1.placeholder = "Masukan Sisi A (cm)";
+        input2.placeholder = "Masukan Sisi B (cm)";
+        input3.style.display = 'block';
+        input3.placeholder = "Masukan Sisi C (cm)";
+        judul.innerText = 'Keliling Segitiga'
+        rumus.innerHTML = `
+            Rumus Keliling Segitiga adalah:
+            <span>K = S1 + S2 + S3</span>
+            Dimana: <br>
+            K = Keliling <br>
+            S1 = Sisi A <br>
+            S2 = Sisi B <br>
+            S3 = Sisi C`;
     }
-    if (selectedOption.value == 'Keliling'){
-        console.log("wow")
-        input[0].placeholder = "Masukan Sisi A (Dalam bentuk sentimeter)"
-        input[1].placeholder = "Masukan Sisi B (Dalam bentuk sentimeter)"
-        input[2].style.display = 'block'
-        input[2].placeholder = "Masukan Sisi C (Dalam bentuk sentimeter)"
-        rumusKeliling()
-        clearAnswer()
-    }
+}
+
+function clearAnswer(event) {
+    document.getElementById('inputAnswer').innerHTML = '';
 }
